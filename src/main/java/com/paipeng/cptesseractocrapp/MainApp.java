@@ -1,4 +1,4 @@
-package com.paipeng;
+package com.paipeng.cptesseractocrapp;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

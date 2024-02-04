@@ -1,4 +1,4 @@
-package com.paipeng;
+package com.paipeng.cptesseractocrapp;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
