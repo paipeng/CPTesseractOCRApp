@@ -2,6 +2,6 @@ module CPTesseractOCRApp {
     requires javafx.controls;
     requires javafx.fxml;
     
-    opens org.openjfx to javafx.fxml;
-    exports org.openjfx;
+    opens com.paipeng to javafx.fxml;
+    exports com.paipeng;
 }

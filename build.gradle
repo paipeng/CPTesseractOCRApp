@@ -13,7 +13,7 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = "$moduleName/org.openjfx.MainApp"
+mainClassName = "$moduleName/com.paipeng.MainApp"
 dependencies {
     // https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j
     implementation group: 'net.sourceforge.tess4j', name: 'tess4j', version: '5.10.0'
