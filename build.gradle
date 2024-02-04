@@ -14,7 +14,20 @@ javafx {
 }
 
 mainClassName = "$moduleName/org.openjfx.MainApp"
+dependencies {
+    // https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j
+    implementation group: 'net.sourceforge.tess4j', name: 'tess4j', version: '5.10.0'
 
+
+    testImplementation group: 'junit', name: 'junit', version: '4.13.1'
+    // https://mvnrepository.com/artifact/org.testfx/testfx-core
+    testImplementation group: 'org.testfx', name: 'testfx-core', version: '4.0.17'
+    testImplementation group: 'org.testfx', name: 'testfx-junit', version: '4.0.17'
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.10.0'
+
+}
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
