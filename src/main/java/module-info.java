@@ -1,4 +1,4 @@
-module hellofx {
+module CPTesseractOCRApp {
     requires javafx.controls;
     requires javafx.fxml;
     
