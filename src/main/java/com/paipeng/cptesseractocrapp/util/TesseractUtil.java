@@ -1,13 +1,9 @@
 package com.paipeng.cptesseractocrapp.util;
 
-import java.io.File;
-
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
 
 public class TesseractUtil {
     public static String decode(String fileName, String language) {
+        /*
         File imageFile = new File(fileName); //"eurotext.tif"
         ITesseract tesseract = new Tesseract();  // JNA Interface Mapping
         // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
@@ -24,5 +20,8 @@ public class TesseractUtil {
             System.err.println(e.getMessage());
             return null;
         }
+
+         */
+        return "";
     }
 }
