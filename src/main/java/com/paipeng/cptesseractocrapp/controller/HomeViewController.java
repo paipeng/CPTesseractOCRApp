@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -31,9 +32,13 @@ public class HomeViewController implements Initializable {
         logger.trace("initialize IdLabel version: " + VersionProperties.getInstance().getVersion());
         if (previewImageView != null) {
             logger.trace("previewImageView valid");
+            previewImageView.setImage(new Image(Objects.requireNonNull(HomeViewController.class.getResourceAsStream("/images/test1.png"))));
+
         } else {
             logger.error("previewImageView invalid");
         }
+
+
     }
 
     public static void start() throws IOException {
