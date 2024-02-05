@@ -21,7 +21,7 @@ class TesseractUtilTest {
     @Test
     void decode() {
         String imageFileName = Objects.requireNonNull(TesseractUtilTest.class.getClassLoader().getResource("images/test.png")).getFile();
-        String output = TesseractUtil.decode(imageFileName);
+        String output = TesseractUtil.decode(imageFileName, "chi_sim");
         System.out.println("output: " + output);
     }
 }

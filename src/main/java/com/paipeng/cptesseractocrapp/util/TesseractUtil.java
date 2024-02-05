@@ -7,14 +7,14 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 public class TesseractUtil {
-    public static String decode(String fileName) {
+    public static String decode(String fileName, String language) {
         File imageFile = new File(fileName); //"eurotext.tif"
         ITesseract tesseract = new Tesseract();  // JNA Interface Mapping
         // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
         tesseract.setDatapath("src/main/resources/tessdata"); // path to tessdata directory
 
         try {
-            tesseract.setLanguage("chi_sim"); // eng
+            tesseract.setLanguage(language); // eng
             tesseract.setPageSegMode(1);
             tesseract.setOcrEngineMode(1);
             String result = tesseract.doOCR(imageFile);
