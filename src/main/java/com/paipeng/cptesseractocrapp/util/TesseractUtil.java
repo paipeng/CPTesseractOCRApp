@@ -7,7 +7,7 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 public class TesseractUtil {
-    public static void decode(String fileName) {
+    public static String decode(String fileName) {
         File imageFile = new File(fileName); //"eurotext.tif"
         ITesseract tesseract = new Tesseract();  // JNA Interface Mapping
         // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
@@ -19,8 +19,10 @@ public class TesseractUtil {
             tesseract.setOcrEngineMode(1);
             String result = tesseract.doOCR(imageFile);
             System.out.println(result);
+            return result;
         } catch (TesseractException e) {
             System.err.println(e.getMessage());
+            return null;
         }
     }
 }
