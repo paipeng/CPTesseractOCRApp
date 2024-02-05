@@ -13,10 +13,17 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = "$moduleName/com.paipeng.cptesseractocrapp.MainApp"
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+mainClassName = "com.paipeng.cptesseractocrapp.MainApp"
 dependencies {
     // https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j
-    //implementation group: 'net.sourceforge.tess4j', name: 'tess4j', version: '5.10.0'
+    implementation group: 'net.sourceforge.tess4j', name: 'tess4j', version: '5.10.0'
     // https://mvnrepository.com/artifact/net.java.dev.jna/jna
     implementation group: 'net.java.dev.jna', name: 'jna', version: '5.14.0'
 
@@ -100,11 +107,6 @@ configurations {
 test {
     useJUnitPlatform {
         excludeTags 'DatabaseTest', 'FetcherTest', 'GUITest'
-    }
-
-    moduleOptions {
-        // TODO: Remove this as soon as archunit is modularized
-        runOnClasspath = true
     }
 
     testLogging {
