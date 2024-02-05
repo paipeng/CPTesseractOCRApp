@@ -1,12 +1,9 @@
 package com.paipeng.cptesseractocrapp;
 
-import com.paipeng.cptesseractocrapp.controller.HomeController;
+import com.paipeng.cptesseractocrapp.controller.HomeViewController;
 import com.sun.jna.Platform;
 import javafx.application.Application;
 import javafx.application.HostServices;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
@@ -26,7 +23,7 @@ public class MainApp extends Application {
             if (java.awt.SplashScreen.getSplashScreen() != null && java.awt.SplashScreen.getSplashScreen().isVisible()) {
                 java.awt.SplashScreen.getSplashScreen().close();
             }
-            HomeController.start();
+            HomeViewController.start();
         } catch (RuntimeException e) {
             e.printStackTrace();
         }

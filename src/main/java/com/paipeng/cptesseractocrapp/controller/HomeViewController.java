@@ -6,8 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
@@ -16,13 +14,12 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable {
-    private static final String FXML_FILE = "HomeController.fxml";
-    private static final String CSS_FILE = "/css/HomeController.css";
-    public static Logger logger = LoggerFactory.getLogger(HomeController.class);
+public class HomeViewController implements Initializable {
+    private static final String FXML_FILE = "HomeViewController.fxml";
+    private static final String CSS_FILE = "/css/HomeViewController.css";
+    public static Logger logger = LoggerFactory.getLogger(HomeViewController.class);
     private static Stage stage;
 
     @Override
@@ -34,11 +31,11 @@ public class HomeController implements Initializable {
         logger.info("start");
 
         ResourceBundle resources = ResourceBundle.getBundle("bundles.languages", CommonUtil.getCurrentLanguageLocale());
-        Parent root = FXMLLoader.load(Objects.requireNonNull(HomeController.class.getResource(FXML_FILE)));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(HomeViewController.class.getResource(FXML_FILE)));
         //URL url = HomeController.class.getResource(FXML_FILE);
         //Parent root = FXMLLoader.load(Objects.requireNonNull(url), resources);
         Scene scene = new Scene(root);
-        String css = Objects.requireNonNull(HomeController.class.getResource(CSS_FILE)).toExternalForm();
+        String css = Objects.requireNonNull(HomeViewController.class.getResource(CSS_FILE)).toExternalForm();
         scene.getStylesheets().add(css);
         stage = new Stage();
         stage.setTitle(resources.getString("title"));
