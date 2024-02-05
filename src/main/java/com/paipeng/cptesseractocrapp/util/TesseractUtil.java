@@ -11,10 +11,10 @@ public class TesseractUtil {
         File imageFile = new File(fileName); //"eurotext.tif"
         ITesseract tesseract = new Tesseract();  // JNA Interface Mapping
         // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
-        tesseract.setDatapath("tessdata"); // path to tessdata directory
+        tesseract.setDatapath("src/main/resources/tessdata"); // path to tessdata directory
 
         try {
-            tesseract.setLanguage("eng");
+            tesseract.setLanguage("chi_sim"); // eng
             tesseract.setPageSegMode(1);
             tesseract.setOcrEngineMode(1);
             String result = tesseract.doOCR(imageFile);
