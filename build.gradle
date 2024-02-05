@@ -27,10 +27,33 @@ dependencies {
     // https://mvnrepository.com/artifact/org.mockito/mockito-core
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.10.0'
 
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0'
+
 }
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
         name = 'hellofx'
+    }
+}
+
+configurations {
+    testCompile
+}
+test {
+    useJUnitPlatform {
+        excludeTags 'DatabaseTest', 'FetcherTest', 'GUITest'
+    }
+
+    moduleOptions {
+        // TODO: Remove this as soon as archunit is modularized
+        runOnClasspath = true
+    }
+
+    testLogging {
+        // set options for log level LIFECYCLE
+        // for debugging tests: add "STANDARD_OUT", "STANDARD_ERROR"
+        events = ["FAILED"]
+        exceptionFormat "full"
     }
 }
