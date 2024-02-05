@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
     private static final String FXML_FILE = "HomeController.fxml";
-    private static final String CSS_FILE = "styles.css";
+    private static final String CSS_FILE = "/css/HomeController.css";
     public static Logger logger = LoggerFactory.getLogger(HomeController.class);
     private static Stage stage;
 
@@ -38,8 +38,8 @@ public class HomeController implements Initializable {
         //URL url = HomeController.class.getResource(FXML_FILE);
         //Parent root = FXMLLoader.load(Objects.requireNonNull(url), resources);
         Scene scene = new Scene(root);
-        //String css = Objects.requireNonNull(HomeController.class.getResource(CSS_FILE)).toExternalForm();
-        //scene.getStylesheets().add(css);
+        String css = Objects.requireNonNull(HomeController.class.getResource(CSS_FILE)).toExternalForm();
+        scene.getStylesheets().add(css);
         stage = new Stage();
         stage.setTitle(resources.getString("title"));
         stage.setScene(scene);
