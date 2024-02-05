@@ -8,6 +8,7 @@
 
 
 <?import javafx.scene.image.ImageView?>
+<?import com.paipeng.cptesseractocrapp.view.CPToolBar?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="800.0" prefWidth="1000.0"
             xmlns="http://javafx.com/javafx/8.0.171"
@@ -17,7 +18,7 @@
     <top>
         <VBox>
             <Pane fx:id="idMenuPane" minHeight="30"/>
-            <ToolBar fx:id="idToolBar" prefHeight="40" maxHeight="40" minHeight="40"/>
+            <CPToolBar fx:id="toolBar" prefHeight="40" maxHeight="40" minHeight="40"/>
         </VBox>
 
     </top>
