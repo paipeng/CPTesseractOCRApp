@@ -2,13 +2,19 @@ package com.paipeng.cptesseractocrapp.controller;
 
 import com.paipeng.cptesseractocrapp.util.CommonUtil;
 import com.paipeng.cptesseractocrapp.util.VersionProperties;
+import com.paipeng.cptesseractocrapp.view.CPToolBar;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
@@ -24,12 +30,25 @@ public class HomeViewController implements Initializable {
     private static final String CSS_FILE = "/css/HomeViewController.css";
     public static Logger logger = LoggerFactory.getLogger(HomeViewController.class);
     private static Stage stage;
+    @FXML
+    private CPToolBar toolBar;
+    @FXML
+    private SplitPane splitPane;
 
     @FXML
     private ImageView previewImageView;
+
+    @FXML
+    private TextArea ocrTextArea;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logger.trace("initialize IdLabel version: " + VersionProperties.getInstance().getVersion());
+        splitPane.getDividers().get(0).positionProperty().addListener((observable, oldValue, newValue) -> {
+            logger.trace("splitPane divider 0 changed: " + newValue);
+            autoResize();
+        });
+
         if (previewImageView != null) {
             logger.trace("previewImageView valid");
             previewImageView.setImage(new Image(Objects.requireNonNull(HomeViewController.class.getResourceAsStream("/images/test1.png"))));
@@ -37,8 +56,21 @@ public class HomeViewController implements Initializable {
         } else {
             logger.error("previewImageView invalid");
         }
+        autoResize();
+        splitPane.getDividers().get(0).setPosition(0.51);
+    }
 
-
+    private void autoResize() {
+        Pane parentPane = (Pane) ocrTextArea.getParent();
+        if (parentPane != null) {
+            logger.trace("parentPane size: " + parentPane.getWidth() + "-" + parentPane.getHeight());
+            if (parentPane.getWidth() > 0 && parentPane.getHeight() > 0) {
+                ocrTextArea.setPrefWidth(parentPane.getWidth());
+                ocrTextArea.setPrefHeight(parentPane.getHeight());
+                ocrTextArea.setMinWidth(parentPane.getWidth());
+                ocrTextArea.setMinHeight(parentPane.getHeight());
+            }
+        }
     }
 
     public static void start() throws IOException {

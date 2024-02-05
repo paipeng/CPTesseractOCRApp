@@ -23,15 +23,13 @@
     </top>
 
     <center>
-        <SplitPane id="SplitPane" dividerPositions="0.6088328075709779" orientation="HORIZONTAL">
+        <SplitPane fx:id="splitPane" dividerPositions="0.6088328075709779" orientation="HORIZONTAL">
             <items>
                 <Pane>
-                    <ImageView fx:id="previewImageView">
-
-                    </ImageView>
+                    <ImageView fx:id="previewImageView"/>
                 </Pane>
                 <ScrollPane>
-                    <TextArea prefWidth="Infinity" prefHeight="Infinity"></TextArea>
+                    <TextArea fx:id="ocrTextArea"/>
                 </ScrollPane>
             </items>
         </SplitPane>
