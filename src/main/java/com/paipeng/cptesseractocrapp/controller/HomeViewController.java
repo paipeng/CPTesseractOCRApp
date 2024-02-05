@@ -2,10 +2,12 @@ package com.paipeng.cptesseractocrapp.controller;
 
 import com.paipeng.cptesseractocrapp.util.CommonUtil;
 import com.paipeng.cptesseractocrapp.util.VersionProperties;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
@@ -22,9 +24,16 @@ public class HomeViewController implements Initializable {
     public static Logger logger = LoggerFactory.getLogger(HomeViewController.class);
     private static Stage stage;
 
+    @FXML
+    private ImageView previewImageView;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logger.trace("initialize IdLabel version: " + VersionProperties.getInstance().getVersion());
+        if (previewImageView != null) {
+            logger.trace("previewImageView valid");
+        } else {
+            logger.error("previewImageView invalid");
+        }
     }
 
     public static void start() throws IOException {

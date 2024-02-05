@@ -7,10 +7,13 @@
 <?import javafx.scene.layout.*?>
 
 
+<?import javafx.scene.image.ImageView?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           prefHeight="800.0" prefWidth="1000.0"
-           xmlns="http://javafx.com/javafx/8.0.171"
-           xmlns:fx="http://javafx.com/fxml/1">
+            prefHeight="800.0" prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.paipeng.cptesseractocrapp.controller.HomeViewController"
+>
     <top>
         <VBox>
             <Pane fx:id="idMenuPane" minHeight="30"/>
@@ -22,36 +25,14 @@
     <center>
         <SplitPane id="SplitPane" dividerPositions="0.6088328075709779" orientation="HORIZONTAL">
             <items>
-                <TabPane prefHeight="200.0" prefWidth="200.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                        <Tab text="A">
-                            <content>
-                                <TilePane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lavender;&#10;" />
-                            </content>
-                        </Tab>
-                        <Tab text="B">
-                            <content>
-                                <TilePane prefHeight="200.0" prefWidth="200.0" />
-                            </content>
-                        </Tab>
-                        <Tab text="C">
-                            <content>
-                                <TilePane prefHeight="200.0" prefWidth="200.0" />
-                            </content>
-                        </Tab>
-                        <Tab text="D">
-                            <content>
-                                <TilePane prefHeight="200.0" prefWidth="200.0" />
-                            </content>
-                        </Tab>
-                        <Tab text="E">
-                            <content>
-                                <TilePane prefHeight="200.0" prefWidth="200.0" />
-                            </content>
-                        </Tab>
-                    </tabs>
-                </TabPane>
-                <TreeView prefHeight="200.0" prefWidth="200.0" />
+                <Pane>
+                    <ImageView fx:id="previewImageView">
+
+                    </ImageView>
+                </Pane>
+                <ScrollPane>
+                    <TextArea prefWidth="Infinity" prefHeight="Infinity"></TextArea>
+                </ScrollPane>
             </items>
         </SplitPane>
     </center>
