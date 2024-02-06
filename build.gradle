@@ -162,7 +162,7 @@ jlink {
         if (targetPlatformName == 'mac') {
             targetPlatform("mac") {
                 // Use downloaded Bellsoft Liberica JDK with JavaFX bundled!
-                jdkHome = '/opt/jdk-17.0.2.jdk'
+                jdkHome = '/opt/jdk-17.0.2.jdk/Contents/Home'
             }
             installerType = 'pkg'
         }
