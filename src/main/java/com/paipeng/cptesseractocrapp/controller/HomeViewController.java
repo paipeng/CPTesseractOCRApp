@@ -150,7 +150,7 @@ public class HomeViewController implements Initializable {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.setResizable(true);
-        //stage.getIcons().add(new Image(Objects.requireNonNull(HomeController.class.getResourceAsStream("/images/idcard-logo.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(HomeViewController.class.getResourceAsStream("/images/icon.png"))));
         logger.trace("stage show now");
 
         stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
