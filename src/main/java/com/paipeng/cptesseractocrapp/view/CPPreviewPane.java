@@ -66,7 +66,7 @@ public class CPPreviewPane extends Pane {
 
     public void setZoom(double zoomFactor) {
         logger.trace("setZoom: " + zoomFactor);
-        this.zoomFactor = zoomFactor;
+        //this.zoomFactor = zoomFactor;
         for (Node node : canvasPane.getChildren()) {
             ResizableCanvas canvas = (ResizableCanvas) node;
             if (canvas != null) {
@@ -102,5 +102,21 @@ public class CPPreviewPane extends Pane {
                 logger.error("parent pane invalid");
             }
         });
+    }
+
+    public void zoomIn() {
+        this.zoomFactor = this.zoomFactor + 0.1;
+        if (this.zoomFactor > 3) {
+            this.zoomFactor = 3;
+        }
+        setZoom(zoomFactor);
+    }
+
+    public void zoomOut() {
+        this.zoomFactor = this.zoomFactor - 0.1;
+        if (this.zoomFactor <= 0) {
+            this.zoomFactor = 0.1;
+        }
+        setZoom(zoomFactor);
     }
 }

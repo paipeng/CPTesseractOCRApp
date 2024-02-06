@@ -59,10 +59,10 @@ public class CPToolPane extends VBox {
             cpToolPaneInterface.close();
         });
         previewZoomIn.setOnAction(event -> {
-
+            cpToolPaneInterface.zoomIn();
         });
         previewZoomOut.setOnAction(event -> {
-
+            cpToolPaneInterface.zoomOut();
         });
         selectFileButton.setOnAction(event -> {
             String filePath = chooseFile();
@@ -125,5 +125,8 @@ public class CPToolPane extends VBox {
         void decode(String filePath, String language);
 
         void selectFile(String filePath);
+
+        void zoomIn();
+        void zoomOut();
     }
 }

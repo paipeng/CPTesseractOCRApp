@@ -100,6 +100,17 @@ public class HomeViewController implements Initializable {
                     logger.error("previewImageView invalid");
                 }
             }
+
+            @Override
+            public void zoomIn() {
+                previewPane.zoomIn();
+            }
+
+            @Override
+            public void zoomOut() {
+                previewPane.zoomOut();
+
+            }
         });
 
         stage.widthProperty().addListener((obs, oldVal, newVal) -> {
