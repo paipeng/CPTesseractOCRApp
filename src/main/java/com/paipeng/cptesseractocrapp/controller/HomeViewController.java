@@ -1,6 +1,8 @@
 package com.paipeng.cptesseractocrapp.controller;
 
 import com.paipeng.cptesseractocrapp.util.CommonUtil;
+import com.paipeng.cptesseractocrapp.util.ImageUtil;
+import com.paipeng.cptesseractocrapp.util.TesseractUtil;
 import com.paipeng.cptesseractocrapp.util.VersionProperties;
 import com.paipeng.cptesseractocrapp.view.CPToolPane;
 import javafx.fxml.FXML;
@@ -18,6 +20,8 @@ import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -29,7 +33,7 @@ public class HomeViewController implements Initializable {
     public static Logger logger = LoggerFactory.getLogger(HomeViewController.class);
     private static Stage stage;
     @FXML
-    private CPToolPane toolBar;
+    private CPToolPane toolPane;
     @FXML
     private SplitPane splitPane;
 
@@ -47,15 +51,41 @@ public class HomeViewController implements Initializable {
             autoResize();
         });
 
-        if (previewImageView != null) {
-            logger.trace("previewImageView valid");
-            previewImageView.setImage(new Image(Objects.requireNonNull(HomeViewController.class.getResourceAsStream("/images/test1.png"))));
 
-        } else {
-            logger.error("previewImageView invalid");
-        }
         autoResize();
         splitPane.getDividers().get(0).setPosition(0.51);
+
+
+        toolPane.setCPToolPaneInterface(new CPToolPane.CPToolPaneInterface() {
+            @Override
+            public void close() {
+
+            }
+
+            @Override
+            public void decode(String filePath) {
+                String ocrText = TesseractUtil.decode(filePath, "chi_sim");
+                logger.trace("ocrText: " + ocrText);
+                ocrTextArea.setText(ocrText);
+            }
+
+            @Override
+            public void selectFile(String filePath) {
+                logger.trace("selectFile: " + filePath);
+                if (previewImageView != null) {
+                    logger.trace("previewImageView valid");
+                    try {
+                        BufferedImage bufferedImage = ImageUtil.readBufferedImage(filePath);
+                        previewImageView.setImage(ImageUtil.convertToFxImage(bufferedImage));
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    logger.error("previewImageView invalid");
+                }
+            }
+        });
     }
 
     private void autoResize() {

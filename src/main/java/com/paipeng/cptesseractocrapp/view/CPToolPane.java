@@ -4,9 +4,13 @@ import com.paipeng.cptesseractocrapp.util.FXMLUtil;
 import com.paipeng.cptesseractocrapp.util.TesseractUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
 
 public class CPToolPane extends VBox {
     private static final String FXML_FILE = "com/paipeng/cptesseractocrapp/view";
@@ -21,17 +25,29 @@ public class CPToolPane extends VBox {
     @FXML
     private Button previewZoomOut;
 
+    @FXML
+    private Button selectFileButton;
+
+    @FXML
+    private TextField inputFileTextField;
+
+
+    private CPToolPaneInterface cpToolPaneInterface;
+
     public CPToolPane() {
         super();
         FXMLUtil.loadFXML(this, FXML_FILE);
         init();
     }
 
+    public void setCPToolPaneInterface(CPToolPaneInterface cpToolPaneInterface) {
+        this.cpToolPaneInterface = cpToolPaneInterface;
+    }
+
     private void init() {
         closeButton.setOnAction(event -> {
             logger.trace("close button");
-            String ocrText = TesseractUtil.decode("src/test/resources/images/test.png", "chi_sim");
-            logger.trace("ocrText: " + ocrText);
+            cpToolPaneInterface.decode(inputFileTextField.getText());
         });
         previewZoomIn.setOnAction(event -> {
 
@@ -39,6 +55,41 @@ public class CPToolPane extends VBox {
         previewZoomOut.setOnAction(event -> {
 
         });
+        selectFileButton.setOnAction(event -> {
+            String filePath = chooseFile();
+            inputFileTextField.setText(filePath);
+            cpToolPaneInterface.selectFile(filePath);
+        });
     }
 
+    private String chooseFile() {
+        logger.trace("chooseFile");
+        FileChooser fileChooser = new FileChooser();
+        //Set extension filter for text files
+        String description;
+        String extensions;
+        description = "Image format (*.png)";
+        extensions = "*.png";
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(description, extensions);
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //Show save file dialog
+        File file = fileChooser.showOpenDialog(null);
+
+        if (file != null) {
+            logger.trace("select file path : " + file.getAbsolutePath());
+            return file.getAbsolutePath();
+        } else {
+            return null;
+        }
+    }
+
+    public interface CPToolPaneInterface {
+
+        void close();
+
+        void decode(String filePath);
+
+        void selectFile(String filePath);
+    }
 }

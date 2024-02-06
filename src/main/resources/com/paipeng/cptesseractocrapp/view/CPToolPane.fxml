@@ -22,6 +22,19 @@
             </items>
 
             <Separator orientation="VERTICAL"/>
+            <items>
+                <TextField fx:id="inputFileTextField" prefWidth="100">
+                </TextField>
+            </items>
+            <items>
+                <Button fx:id="selectFileButton" mnemonicParsing="false" prefWidth="30"
+                        style="-fx-background-image: url('images/icons/zoom_in.png'); -fx-background-size: 100% 100%;">
+                    <tooltip>
+                        <Tooltip text="%tool_preview_zoom_in" />
+                    </tooltip>
+                </Button>
+            </items>
+            <Separator orientation="VERTICAL"/>
 
             <items>
                 <Button fx:id="previewZoomIn" mnemonicParsing="false" prefWidth="30"
