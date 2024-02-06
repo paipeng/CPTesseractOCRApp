@@ -1,13 +1,17 @@
 package com.paipeng.cptesseractocrapp.util;
 
 
+import com.paipeng.cptesseractocrapp.view.CPToolPane;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
 public class TesseractUtil {
+    public static Logger logger = LoggerFactory.getLogger(CPToolPane.class);
     public static String decode(String fileName, String language) {
         File imageFile = new File(fileName); //"eurotext.tif"
         ITesseract tesseract = new Tesseract();  // JNA Interface Mapping
@@ -19,10 +23,10 @@ public class TesseractUtil {
             tesseract.setPageSegMode(1);
             tesseract.setOcrEngineMode(1);
             String result = tesseract.doOCR(imageFile);
-            System.out.println(result);
+            logger.trace(result);
             return result;
         } catch (TesseractException e) {
-            System.err.println(e.getMessage());
+            logger.error(e.getMessage());
             return null;
         }
     }
