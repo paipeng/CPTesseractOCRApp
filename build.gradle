@@ -119,6 +119,7 @@ task fatJar(type: Jar) {
 
 application {
     mainClass = mainClassName
+    mainModule = 'CPTesseractOCRApp'
 }
 
 run {
