@@ -38,6 +38,8 @@ public class CPToolPane extends VBox {
     @FXML
     private CheckComboBox<String> languageCheckComboBox;
 
+    @FXML
+    private Button ocrDecodeButton;
 
     private CPToolPaneInterface cpToolPaneInterface;
 
@@ -54,16 +56,7 @@ public class CPToolPane extends VBox {
     private void init() {
         closeButton.setOnAction(event -> {
             logger.trace("close button");
-            StringBuilder language = new StringBuilder();
-
-            for (int i = 0; i < languageCheckComboBox.getCheckModel().getCheckedItems().size(); i++) {
-                String item = languageCheckComboBox.getCheckModel().getItem(i);
-                language.append(item.replace(".traineddata", ""));
-                if (i < languageCheckComboBox.getCheckModel().getCheckedItems().size() - 1) {
-                    language.append("+");
-                }
-            }
-            cpToolPaneInterface.decode(inputFileTextField.getText(), language.toString());
+            cpToolPaneInterface.close();
         });
         previewZoomIn.setOnAction(event -> {
 
@@ -77,10 +70,25 @@ public class CPToolPane extends VBox {
             cpToolPaneInterface.selectFile(filePath);
         });
 
+        ocrDecodeButton.setOnAction(event -> {
+            logger.trace("OCR Decode button");
+            StringBuilder language = new StringBuilder();
+
+            for (int i = 0; i < languageCheckComboBox.getCheckModel().getCheckedItems().size(); i++) {
+                String item = languageCheckComboBox.getCheckModel().getItem(i);
+                language.append(item.replace(".traineddata", ""));
+                if (i < languageCheckComboBox.getCheckModel().getCheckedItems().size() - 1) {
+                    language.append("+");
+                }
+            }
+            cpToolPaneInterface.decode(inputFileTextField.getText(), language.toString());
+        });
+
         languageCheckComboBox.getItems().clear();
         final ObservableList<String> items = FXCollections.observableArrayList();
         items.addAll(TesseractUtil.getOCRLanguages());
         languageCheckComboBox.getItems().addAll(items);
+        languageCheckComboBox.getCheckModel().check(0);
     }
 
     private String chooseFile() {

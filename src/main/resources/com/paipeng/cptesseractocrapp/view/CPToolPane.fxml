@@ -13,7 +13,9 @@
     <VBox prefHeight="40" maxHeight="40" minHeight="40">
         <ToolBar layoutY="29.0" prefHeight="40.0" prefWidth="Infinity" maxHeight="40">
             <items>
-                <Button fx:id="closeButton" mnemonicParsing="false" text="%close_database_tableview" >
+                <Button fx:id="closeButton" mnemonicParsing="false" prefWidth="30"
+                        style="-fx-background-image: url('images/icons/exit.png'); -fx-background-size: 100% 100%;"
+                        >
                     <tooltip>
                         <Tooltip text="%close_preview" />
                     </tooltip>
@@ -22,22 +24,22 @@
 
             <Separator orientation="VERTICAL"/>
             <items>
-                <TextField fx:id="inputFileTextField" prefWidth="100">
+                <TextField fx:id="inputFileTextField" prefWidth="200">
                 </TextField>
             </items>
             <items>
                 <Button fx:id="selectFileButton" mnemonicParsing="false" prefWidth="30"
-                        style="-fx-background-image: url('images/icons/zoom_in.png'); -fx-background-size: 100% 100%;">
+                        style="-fx-background-image: url('images/icons/select_file.png'); -fx-background-size: 100% 100%;">
                     <tooltip>
-                        <Tooltip text="%tool_preview_zoom_in" />
+                        <Tooltip text="%database_select_file" />
                     </tooltip>
                 </Button>
             </items>
             <Separator orientation="VERTICAL"/>
-
-
-            <CheckComboBox fx:id="languageCheckComboBox" prefWidth="138.0"/>
-
+            <items>
+                <Label text="%language" prefWidth="40"/>
+                <CheckComboBox fx:id="languageCheckComboBox" prefWidth="138.0"/>
+            </items>
 
             <Separator orientation="VERTICAL"/>
 
@@ -57,7 +59,16 @@
                     </tooltip>
                 </Button>
             </items>
+            <Separator orientation="VERTICAL"/>
 
+            <items>
+                <Button fx:id="ocrDecodeButton" mnemonicParsing="false" prefWidth="30"
+                        style="-fx-background-image: url('images/icons/ocr_decode.png'); -fx-background-size: 100% 100%;">
+                    <tooltip>
+                        <Tooltip text="%ocr_decode" />
+                    </tooltip>
+                </Button>
+            </items>
         </ToolBar>
     </VBox>
 
