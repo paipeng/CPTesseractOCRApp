@@ -4,6 +4,7 @@ import com.paipeng.cptesseractocrapp.util.FXMLUtil;
 import com.paipeng.cptesseractocrapp.util.TesseractUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -30,6 +31,9 @@ public class CPToolPane extends VBox {
 
     @FXML
     private TextField inputFileTextField;
+
+    @FXML
+    private ChoiceBox<String> languageChoiceBox;
 
 
     private CPToolPaneInterface cpToolPaneInterface;
@@ -60,6 +64,13 @@ public class CPToolPane extends VBox {
             inputFileTextField.setText(filePath);
             cpToolPaneInterface.selectFile(filePath);
         });
+
+
+        languageChoiceBox.getItems().clear();
+        for(String language: TesseractUtil.getOCRLanguages()) {
+            languageChoiceBox.getItems().add(language);
+        }
+        languageChoiceBox.getSelectionModel().select(0);
     }
 
     private String chooseFile() {

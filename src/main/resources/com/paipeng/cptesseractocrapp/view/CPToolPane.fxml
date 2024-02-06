@@ -36,6 +36,12 @@
             </items>
             <Separator orientation="VERTICAL"/>
 
+
+            <ChoiceBox fx:id="languageChoiceBox" prefWidth="138.0"/>
+
+
+            <Separator orientation="VERTICAL"/>
+
             <items>
                 <Button fx:id="previewZoomIn" mnemonicParsing="false" prefWidth="30"
                         style="-fx-background-image: url('images/icons/zoom_in.png'); -fx-background-size: 100% 100%;">
@@ -52,6 +58,7 @@
                     </tooltip>
                 </Button>
             </items>
+
         </ToolBar>
     </VBox>
 
