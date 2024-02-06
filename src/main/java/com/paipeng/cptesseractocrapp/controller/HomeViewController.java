@@ -95,13 +95,7 @@ public class HomeViewController implements Initializable {
                 logger.trace("selectFile: " + filePath);
                 if (previewImageView != null) {
                     logger.trace("previewImageView valid");
-                    try {
-                        BufferedImage bufferedImage = ImageUtil.readBufferedImage(filePath);
-                        //previewImageView.setImage(ImageUtil.convertToFxImage(bufferedImage));
-
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    previewPane.setPreviewImage(filePath);
                 } else {
                     logger.error("previewImageView invalid");
                 }
