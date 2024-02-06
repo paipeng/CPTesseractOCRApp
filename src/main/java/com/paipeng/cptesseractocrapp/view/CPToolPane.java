@@ -96,10 +96,15 @@ public class CPToolPane extends VBox {
         FileChooser fileChooser = new FileChooser();
         //Set extension filter for text files
         String description;
-        String extensions;
-        description = "Image format (*.png)";
-        extensions = "*.png";
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(description, extensions);
+        description = "Image format (*.png, *.jpeg, *.jpg, *.bmp, *.tif, *.tiff)";
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(description,
+                "*.png",
+                "*.jpeg",
+                "*.jpg",
+                "*.bmp",
+                "*.tif",
+                "*.tiff");
+
         fileChooser.getExtensionFilters().add(extFilter);
 
         //Show save file dialog
