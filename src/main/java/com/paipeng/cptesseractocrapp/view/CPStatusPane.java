@@ -1,5 +1,6 @@
 package com.paipeng.cptesseractocrapp.view;
 
+import com.paipeng.cptesseractocrapp.util.CommonUtil;
 import com.paipeng.cptesseractocrapp.util.FXMLUtil;
 import com.paipeng.cptesseractocrapp.util.VersionProperties;
 import javafx.fxml.FXML;
@@ -22,6 +23,6 @@ public class CPStatusPane extends Pane {
     }
 
     private void init() {
-        status1Label.setText("version: " + VersionProperties.getInstance().getVersion());
+        status1Label.setText(CommonUtil.getString("version") + ": " + VersionProperties.getInstance().getVersion());
     }
 }
