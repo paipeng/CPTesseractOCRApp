@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.paipeng.cptesseractocrapp.view.CPToolPane?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<fx:root type="CPToolPane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.paipeng.cptesseractocrapp.view.CPToolPane">
+
+    <VBox prefHeight="40" maxHeight="40" minHeight="40">
+        <ToolBar layoutY="29.0" prefHeight="40.0" prefWidth="Infinity" maxHeight="40">
+            <items>
+                <Button fx:id="closeButton" mnemonicParsing="false" text="%close_database_tableview" >
+                    <tooltip>
+                        <Tooltip text="%close_preview" />
+                    </tooltip>
+                </Button>
+            </items>
+
+            <Separator orientation="VERTICAL"/>
+
+            <items>
+                <Button fx:id="previewZoomIn" mnemonicParsing="false" prefWidth="30"
+                        style="-fx-background-image: url('images/icons/zoom_in.png'); -fx-background-size: 100% 100%;">
+                    <tooltip>
+                        <Tooltip text="%tool_preview_zoom_in" />
+                    </tooltip>
+                </Button>
+            </items>
+            <items>
+                <Button fx:id="previewZoomOut" mnemonicParsing="false" prefWidth="30"
+                        style="-fx-background-image: url('images/icons/zoom_out.png'); -fx-background-size: 100% 100%;">
+                    <tooltip>
+                        <Tooltip text="%tool_preview_zoom_out" />
+                    </tooltip>
+                </Button>
+            </items>
+        </ToolBar>
+    </VBox>
+
+</fx:root>

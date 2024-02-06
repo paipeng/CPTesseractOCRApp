@@ -2,9 +2,7 @@ package com.paipeng.cptesseractocrapp.controller;
 
 import com.paipeng.cptesseractocrapp.util.CommonUtil;
 import com.paipeng.cptesseractocrapp.util.VersionProperties;
-import com.paipeng.cptesseractocrapp.view.CPToolBar;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import com.paipeng.cptesseractocrapp.view.CPToolPane;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +29,7 @@ public class HomeViewController implements Initializable {
     public static Logger logger = LoggerFactory.getLogger(HomeViewController.class);
     private static Stage stage;
     @FXML
-    private CPToolBar toolBar;
+    private CPToolPane toolBar;
     @FXML
     private SplitPane splitPane;
 

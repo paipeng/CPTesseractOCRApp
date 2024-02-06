@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 public class FXMLUtil {
     public static Logger logger = LoggerFactory.getLogger(FXMLUtil.class);
-    private static final String PREFIX = "/fxml/";
+    private static final String PREFIX = "/";//""/fxml/";
     public static <T extends Parent> Parent loadFXML(T component) {
 
         ResourceBundle resources = ResourceBundle.getBundle("bundles.languages", CommonUtil.getCurrentLanguageLocale());

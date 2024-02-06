@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.paipeng.idlabelprinting.application.view.menu.IdMenuPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<fx:root type="IdMenuPane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.paipeng.idlabelprinting.application.view.menu.IdMenuPane">
+    <VBox>
+        <MenuBar prefHeight="30.0" prefWidth="1920.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="%menu_file">
+                    <items>
+                        <MenuItem fx:id="createProjectMenuItem" mnemonicParsing="false" text="%menu_file_new_project"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="openProjectMenuItem" mnemonicParsing="false" text="%menu_file_open_project"/>
+                    </items>
+                    <items>
+                        <Menu fx:id="openRecentProjectMenu" mnemonicParsing="false"
+                              text="%menu_file_open_recent_project"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="backupProjectMenuItem" mnemonicParsing="false"
+                              text="%menu_file_backup_project"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="closeProjectMenuItem" mnemonicParsing="false" text="%menu_file_close_project"/>
+                    </items>
+                    <SeparatorMenuItem/>
+                    <items>
+                        <MenuItem fx:id="saveProjectMenuItem" mnemonicParsing="false" text="%menu_file_save_project"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="saveAsProjectMenuItem" mnemonicParsing="false"
+                                  text="%menu_file_save_as_project"/>
+                    </items>
+                    <SeparatorMenuItem/>
+                    <items>
+                        <MenuItem fx:id="menuFileExitMenuItem" mnemonicParsing="false" text="%menu_file_exit"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="%menu_edit">
+                    <items>
+                        <MenuItem fx:id="menuUndoMenuItem" mnemonicParsing="false" text="%menu_undo"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="menuRedoMenuItem" mnemonicParsing="false" text="%menu_redo"/>
+                    </items>
+                </Menu>
+                <!--
+                <Menu mnemonicParsing="false" text="%menu_display">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="%menu_display_database"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="%menu_tool">
+                    <items>
+                        <MenuItem fx:id="menuToolSaveCanvasMenuItem" mnemonicParsing="false" text="%menu_tool_save_canvas"/>
+                    </items>
+                </Menu>
+
+                -->
+                <Menu mnemonicParsing="false" text="%menu_devices">
+                    <items>
+                        <MenuItem fx:id="idFPMenuItem" mnemonicParsing="false" text="%menu_capture_id_fingerprint"/>
+                    </items>
+                    <SeparatorMenuItem/>
+                    <items>
+                        <MenuItem fx:id="nfcMenuItem" mnemonicParsing="false" text="%menu_nfc"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="%menu_print">
+                    <items>
+                        <MenuItem fx:id="directPrintMenuItem" mnemonicParsing="false" text="%menu_print_direct"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="printPreviewMenuItem" mnemonicParsing="false" text="%menu_print_preview"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="%menu_database">
+                    <items>
+                        <MenuItem fx:id="openDatabaseMenuItem" mnemonicParsing="false" text="%menu_database_open"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="closeDatabaseMenuItem" mnemonicParsing="false" text="%menu_database_close"/>
+                    </items>
+                    <Menu fx:id="selectDatabaseMenu" mnemonicParsing="false" text="%menu_database_select">
+                    </Menu>
+                    <SeparatorMenuItem/>
+                    <items>
+                        <MenuItem fx:id="searchDatabaseMenuItem" mnemonicParsing="false" text="%menu_database_search"/>
+                    </items>
+                    <SeparatorMenuItem/>
+                    <items>
+                        <MenuItem fx:id="createDatabaseMenuItem" mnemonicParsing="false" text="%menu_database_create"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="editDatabaseMenuItem" mnemonicParsing="false" text="%menu_database_edit"/>
+                    </items>
+                    <SeparatorMenuItem/>
+
+                    <items>
+                        <MenuItem fx:id="duplicateDatabaseMenuItem" mnemonicParsing="false" text="%duplicate_selected_database"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="generateDatabaseMenuItem" mnemonicParsing="false" text="%generate_selected_database"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="editGenerateDatabaseMenuItem" mnemonicParsing="false" text="%edit_generate_selected_database"/>
+                    </items>
+                    <SeparatorMenuItem/>
+                    <items>
+                        <MenuItem fx:id="importDatabaseMenuItem" mnemonicParsing="false" text="%menu_database_import"/>
+                    </items>
+                    <items>
+                        <MenuItem fx:id="exportDatabaseMenuItem" mnemonicParsing="false" text="%database_export"/>
+                    </items>
+                    <!--
+                    <SeparatorMenuItem/>
+                    <items>
+                        <Menu mnemonicParsing="false" text="%menu_database_delete_all">
+                            <items>
+                                <MenuItem fx:id="deleteAllDatabaseMenuItem" mnemonicParsing="false"
+                                          text="%menu_database_delete_all"/>
+                            </items>
+                        </Menu>
+                    </items>
+                    -->
+                    <SeparatorMenuItem/>
+                    <Menu mnemonicParsing="false" text="%menu_dictioanry">
+                        <items>
+                            <MenuItem fx:id="openDictionaryMenuItem" mnemonicParsing="false"
+                                      text="%menu_open_dictioanry"/>
+                        </items>
+                        <SeparatorMenuItem/>
+                        <items>
+                            <MenuItem fx:id="importDictionaryMenuItem" mnemonicParsing="false"
+                                      text="%menu_import_dictionary"/>
+                        </items>
+                        <items>
+                            <MenuItem fx:id="exportDictionaryMenuItem" mnemonicParsing="false"
+                                      text="%menu_export_dictionary"/>
+                        </items>
+                        <items>
+                            <MenuItem fx:id="deleteAllDictionaryMenuItem" mnemonicParsing="false"
+                                      text="%menu_delete_all_dictionary"/>
+                        </items>
+                        <items>
+                            <MenuItem fx:id="addDictionaryKeyMenuItem" mnemonicParsing="false"
+                                      text="%menu_add_dictionary_key"/>
+                        </items>
+                        <items>
+                            <MenuItem fx:id="deleteDictionaryKeyMenuItem" mnemonicParsing="false"
+                                      text="%menu_delete_dictionary_key"/>
+                        </items>
+                    </Menu>
+                    <SeparatorMenuItem/>
+                    <items>
+                        <MenuItem fx:id="idCardDatabaseMenuItem" mnemonicParsing="false"
+                                  text="%menu_database_idcard"/>
+                    </items>
+                </Menu>
+
+                <Menu mnemonicParsing="false" text="%menu_help">
+                    <items>
+                        <MenuItem fx:id="handbookMenuItem" mnemonicParsing="false" text="%menu_help_handbook"/>
+                    </items>
+                    <SeparatorMenuItem/>
+                    <items>
+                        <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" text="%menu_help_about"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </VBox>
+</fx:root>
