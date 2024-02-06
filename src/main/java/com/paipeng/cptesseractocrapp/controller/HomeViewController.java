@@ -5,6 +5,7 @@ import com.paipeng.cptesseractocrapp.util.ImageUtil;
 import com.paipeng.cptesseractocrapp.util.TesseractUtil;
 import com.paipeng.cptesseractocrapp.util.VersionProperties;
 import com.paipeng.cptesseractocrapp.view.CPToolPane;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,7 +60,8 @@ public class HomeViewController implements Initializable {
         toolPane.setCPToolPaneInterface(new CPToolPane.CPToolPaneInterface() {
             @Override
             public void close() {
-
+                Platform.exit();
+                System.exit(0);
             }
 
             @Override
