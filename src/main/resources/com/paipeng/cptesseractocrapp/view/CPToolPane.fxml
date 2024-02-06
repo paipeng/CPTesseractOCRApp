@@ -37,7 +37,7 @@
             <Separator orientation="VERTICAL"/>
 
 
-            <ChoiceBox fx:id="languageChoiceBox" prefWidth="138.0"/>
+            <ComboBox fx:id="languageComboBox" prefWidth="138.0"/>
 
 
             <Separator orientation="VERTICAL"/>

@@ -3,9 +3,7 @@ package com.paipeng.cptesseractocrapp.view;
 import com.paipeng.cptesseractocrapp.util.FXMLUtil;
 import com.paipeng.cptesseractocrapp.util.TesseractUtil;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import org.slf4j.Logger;
@@ -33,7 +31,7 @@ public class CPToolPane extends VBox {
     private TextField inputFileTextField;
 
     @FXML
-    private ChoiceBox<String> languageChoiceBox;
+    private ComboBox<CheckBox> languageComboBox;
 
 
     private CPToolPaneInterface cpToolPaneInterface;
@@ -51,7 +49,7 @@ public class CPToolPane extends VBox {
     private void init() {
         closeButton.setOnAction(event -> {
             logger.trace("close button");
-            String language = languageChoiceBox.getValue();
+            String language = languageComboBox.getValue().getText();
             cpToolPaneInterface.decode(inputFileTextField.getText(), language.replace(".traineddata", ""));
         });
         previewZoomIn.setOnAction(event -> {
@@ -67,11 +65,12 @@ public class CPToolPane extends VBox {
         });
 
 
-        languageChoiceBox.getItems().clear();
+        languageComboBox.getItems().clear();
         for(String language: TesseractUtil.getOCRLanguages()) {
-            languageChoiceBox.getItems().add(language);
+            CheckBox checkBox = new CheckBox(language);
+            languageComboBox.getItems().add(checkBox);
         }
-        languageChoiceBox.getSelectionModel().select(0);
+        languageComboBox.getSelectionModel().select(0);
     }
 
     private String chooseFile() {
