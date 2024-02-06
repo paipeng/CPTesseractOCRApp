@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.paipeng.cptesseractocrapp.view.CPToolPane?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+
+<?import org.controlsfx.control.CheckComboBox?>
 
 <fx:root type="CPToolPane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="com.paipeng.cptesseractocrapp.view.CPToolPane">
@@ -37,7 +36,7 @@
             <Separator orientation="VERTICAL"/>
 
 
-            <ComboBox fx:id="languageComboBox" prefWidth="138.0"/>
+            <CheckComboBox fx:id="languageCheckComboBox" prefWidth="138.0"/>
 
 
             <Separator orientation="VERTICAL"/>

@@ -2,10 +2,15 @@ package com.paipeng.cptesseractocrapp.view;
 
 import com.paipeng.cptesseractocrapp.util.FXMLUtil;
 import com.paipeng.cptesseractocrapp.util.TesseractUtil;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import org.controlsfx.control.CheckComboBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +36,7 @@ public class CPToolPane extends VBox {
     private TextField inputFileTextField;
 
     @FXML
-    private ComboBox<CheckBox> languageComboBox;
+    private CheckComboBox<String> languageCheckComboBox;
 
 
     private CPToolPaneInterface cpToolPaneInterface;
@@ -49,8 +54,16 @@ public class CPToolPane extends VBox {
     private void init() {
         closeButton.setOnAction(event -> {
             logger.trace("close button");
-            String language = languageComboBox.getValue().getText();
-            cpToolPaneInterface.decode(inputFileTextField.getText(), language.replace(".traineddata", ""));
+            StringBuilder language = new StringBuilder();
+
+            for (int i = 0; i < languageCheckComboBox.getCheckModel().getCheckedItems().size(); i++) {
+                String item = languageCheckComboBox.getCheckModel().getItem(i);
+                language.append(item.replace(".traineddata", ""));
+                if (i < languageCheckComboBox.getCheckModel().getCheckedItems().size() - 1) {
+                    language.append("+");
+                }
+            }
+            cpToolPaneInterface.decode(inputFileTextField.getText(), language.toString());
         });
         previewZoomIn.setOnAction(event -> {
 
@@ -64,13 +77,10 @@ public class CPToolPane extends VBox {
             cpToolPaneInterface.selectFile(filePath);
         });
 
-
-        languageComboBox.getItems().clear();
-        for(String language: TesseractUtil.getOCRLanguages()) {
-            CheckBox checkBox = new CheckBox(language);
-            languageComboBox.getItems().add(checkBox);
-        }
-        languageComboBox.getSelectionModel().select(0);
+        languageCheckComboBox.getItems().clear();
+        final ObservableList<String> items = FXCollections.observableArrayList();
+        items.addAll(TesseractUtil.getOCRLanguages());
+        languageCheckComboBox.getItems().addAll(items);
     }
 
     private String chooseFile() {
