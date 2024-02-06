@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import com.paipeng.cptesseractocrapp.view.CPStatusPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.geometry.Insets?>
+<fx:root type="CPStatusPane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.paipeng.cptesseractocrapp.view.CPStatusPane">
+    <HBox maxHeight="20">
+        <Label maxHeight="20" text="" fx:id="status1Label">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Label>
+        <Pane maxHeight="20" prefHeight="17.0" prefWidth="5.0">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Pane>
+        <Label maxHeight="20" text="" fx:id="idUserLabel">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Label>
+        <Label maxHeight="20" text="" fx:id="canvasZoomFactorLabel" prefWidth="200.0">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Label>
+        <Pane maxHeight="20" prefHeight="17.0" prefWidth="50.0">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Pane>
+
+        <Label maxHeight="20" text="" fx:id="projectNameLabel" prefWidth="300.0">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Label>
+        <Pane maxHeight="20" prefHeight="17.0" prefWidth="50.0">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Pane>
+        <Label maxHeight="20" text="" fx:id="status2Label">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Label>
+        <Pane maxHeight="20" prefHeight="17.0" prefWidth="40.0">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Pane>
+        <Label maxHeight="20" text="" fx:id="databaseNameLabel">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Label>
+    </HBox>
+
+</fx:root>

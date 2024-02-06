@@ -4,6 +4,7 @@ import com.paipeng.cptesseractocrapp.util.CommonUtil;
 import com.paipeng.cptesseractocrapp.util.ImageUtil;
 import com.paipeng.cptesseractocrapp.util.TesseractUtil;
 import com.paipeng.cptesseractocrapp.util.VersionProperties;
+import com.paipeng.cptesseractocrapp.view.CPStatusPane;
 import com.paipeng.cptesseractocrapp.view.CPToolPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -35,6 +36,8 @@ public class HomeViewController implements Initializable {
     private static Stage stage;
     @FXML
     private CPToolPane toolPane;
+    @FXML
+    private CPStatusPane statusPane;
     @FXML
     private SplitPane splitPane;
 
