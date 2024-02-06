@@ -1,9 +1,15 @@
 plugins {
   id 'application'
-  id 'org.openjfx.javafxplugin' version '0.0.9'
+  id 'org.openjfx.javafxplugin' version '0.0.13'
+  id 'org.javamodularity.moduleplugin' version "1.8.12"
   id 'org.beryx.jlink' version '2.26.0'
 }
+
+
+group 'com.paipeng.cptesseractocrapp'
 version '1.0.0'
+description = "The Application is for OCR decoding."
+
 
 repositories {
     mavenCentral()
@@ -11,15 +17,25 @@ repositories {
 
 javafx {
     version = "17"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = [
+            'javafx.controls',
+            'javafx.fxml'
+    ]
 }
 
 sourceCompatibility = '17'
 targetCompatibility = '17'
 
+
+javadoc {
+    options.addStringOption('encoding', 'UTF-8')
+}
+compileJava.options.encoding = 'UTF-8'
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
 
 mainClassName = "com.paipeng.cptesseractocrapp.MainApp"
 dependencies {
@@ -67,6 +83,7 @@ classes {
 }
 
 project.configurations.implementation.setCanBeResolved(true)
+
 task fatJar(type: Jar) {
     println "my fatjar"
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -104,40 +121,98 @@ task fatJar(type: Jar) {
     with jar
 }
 
+application {
+    mainClass = mainClassName
+}
 
+run {
+    //jvmArgs = ['-Djdk.gtk.version=2']
+    jvmArgs = ['-Djdk.gtk.version=2', '--add-exports', 'javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED',
+               '--add-exports', 'javafx.graphics/com.sun.javafx.font=ALL-UNNAMED']
+}
+
+// Runtime for non-modular projects
 jlink {
-    setJavaHome(System.getProperty("java.home"))
+
+    println "JavaHome: " + System.getProperty("java.home")
+    setJavaHome("/opt/jdk-17.0.2.jdk/Contents/Home")
+    // Some default options
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-    launcher {
+    // '--add-exports javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED', '--add-exports javafx.graphics/com.sun.javafx.font=ALL-UNNAMED'
+
+    launcher{
         name = 'CP-OCR'
-        jvmArgs = ['-Djdk.gtk.version=2'] // required due to a bug in Java: https://github.com/javafxports/openjdk-jfx/issues/175
+        noConsole = true
     }
+    // Pack it!
     jpackage {
-        installerOptions = [
-                '--description', project.description,
-                '--copyright', 'Copyrigth 2024 PaiPENG'
+        // Could be taken from command line, here it is defined statically
+        // project.findProperty('installerOs')
+        //    (example: -PinstallerOs=mac)
+        targetPlatformName = System.getProperty('os.name').toLowerCase().split()[0]
+        // The app name
+        imageName = 'IdLabelPrinting'
+        jvmArgs = ['-Djdk.gtk.version=2', '--add-exports', 'javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED',
+                   '--add-exports', 'javafx.graphics/com.sun.javafx.font=ALL-UNNAMED',
+                   '--add-modules=javafx.controls,javafx.swing,javafx.media,javafx.graphics,javafx.fxml'
         ]
-        installerType = project.findProperty('installerType') // we will pass this from the command line (example: -PinstallerType=msi)
-        if (installerType == 'msi') {
-            imageOptions += ['--icon', 'src/main/resources/pdfdecorator/gui/icon.ico']
+        // Resource directory for native package overrides,
+        // you can do lots of magic here too...
+        resourceDir = file('package/')
+        if (targetPlatformName == 'mac') {
+            targetPlatform("mac") {
+                // Use downloaded Bellsoft Liberica JDK with JavaFX bundled!
+                jdkHome = '/opt/jdk-17.0.2.jdk'
+            }
+            installerType = 'pkg'
+        }
+        if (targetPlatformName == 'windows') {
+            targetPlatform("win") {
+                jdkHome = 'E:/jdk-17.0.6'
+            }
+            installerType = 'exe'
+        }
+        if (targetPlatformName == 'linux') {
+            targetPlatform("linux") {
+            }
+            installerType = 'deb'
+        }
+        // Add jpackage-specific options
+        installerOptions = [
+                '--name', 'IdLabelPrinting', // installer name
+                '--description', project.description,
+                '--copyright', 'Copyright 2023 PaiPeng',
+                '--vendor', 'PaiPeng'
+        ]
+        // We also could take the installer type from comand line
+        // installerType = project.findProperty('installerType')
+        // We would pass this from the command line
+        //    (example: -PinstallerType=msi)
+        if (installerType == 'pkg') {
+            imageOptions += ['--icon', 'src/main/resources/icon.icns']
             installerOptions += [
-                    '--win-per-user-install', '--win-dir-chooser',
+                    '--license-file', 'package/LICENSE-OS-Installer.txt'
+            ]
+        }
+        if (installerType == 'exe') {
+            imageOptions += ['--icon', 'src/main/resources/icon.ico']
+            installerOptions += [
+                    '--win-per-user-install', // Install only for current user
+                    '--win-console', // Shows what Java outputs to the console
+                    '--win-dir-chooser',
                     '--win-menu', '--win-shortcut'
             ]
         }
-        if (installerType == 'pkg') {
-            imageOptions += ['--icon', 'src/main/resources/icon.icns']
-        }
         if (installerType in ['deb', 'rpm']) {
-            imageOptions += ['--icon', 'src/main/resources/pdfdecorator/gui/icon_256x256.png']
+            imageOptions += ['--icon', 'src/main/resources/icon.png']
             installerOptions += [
-                    '--linux-menu-group', 'Office',
+                    '--linux-menu-group', 'Utility',
                     '--linux-shortcut'
             ]
         }
         if (installerType == 'deb') {
             installerOptions += [
-                    '--linux-deb-maintainer', 'office@walczak.it'
+                    '--linux-deb-maintainer', 'info@autumo.ch'
             ]
         }
         if (installerType == 'rpm') {
@@ -148,9 +223,25 @@ jlink {
     }
 }
 
+
+/**
+ * Hook for obfuscating. Configures installDist to
+ * depend on obfuscate.
+ */
+
+tasks.installDist {
+    //dependsOn("proguard")
+    //dependsOn("copyJar")
+    //proguard.finalizedBy copyJar
+}
+
 jpackage {
+    // Could be used for pre-checks;
+    // e.g., are certain command line arguments defined?
     doFirst {
-        project.getProperty('installerType') // throws exception if its missing
+        // project.findProperty('installerOs')
+        //    (example: -PinstallerOs=mac)
+        // project.getProperty('installerType') // throws exception if its missing
     }
 }
 
