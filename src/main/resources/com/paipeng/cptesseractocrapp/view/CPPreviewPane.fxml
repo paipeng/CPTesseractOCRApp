@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.paipeng.cptesseractocrapp.view.CPPreviewPane?>
+<?import com.paipeng.cptesseractocrapp.view.ruler.HRuler?>
+<?import com.paipeng.cptesseractocrapp.view.ruler.VRuler?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<fx:root type="CPPreviewPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.paipeng.cptesseractocrapp.view.CPPreviewPane">
+    <ScrollPane fx:id="contentScrollPane" layoutX="0.0" layoutY="0.0" >
+        <content>
+            <VBox>
+                <HRuler fx:id="hRuler" maxHeight="20.0" prefHeight="20" prefWidth="1440"/>
+                <HBox fx:id="hboxCanvas">
+                    <VRuler fx:id="vRuler" maxWidth="20" prefHeight="1024.0" prefWidth="20"/>
+                    <Pane fx:id="canvasPane" prefHeight="768.0" prefWidth="1440.0"/>
+                </HBox>
+            </VBox>
+        </content>
+        <padding>
+            <Insets left="00.0" top="0.0"/>
+        </padding>
+    </ScrollPane>
+</fx:root>

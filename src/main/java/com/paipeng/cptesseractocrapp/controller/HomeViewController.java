@@ -4,6 +4,7 @@ import com.paipeng.cptesseractocrapp.util.CommonUtil;
 import com.paipeng.cptesseractocrapp.util.ImageUtil;
 import com.paipeng.cptesseractocrapp.util.TesseractUtil;
 import com.paipeng.cptesseractocrapp.util.VersionProperties;
+import com.paipeng.cptesseractocrapp.view.CPPreviewPane;
 import com.paipeng.cptesseractocrapp.view.CPStatusPane;
 import com.paipeng.cptesseractocrapp.view.CPToolPane;
 import javafx.application.Platform;
@@ -47,6 +48,11 @@ public class HomeViewController implements Initializable {
     @FXML
     private TextArea ocrTextArea;
 
+    @FXML
+    private Pane contentScrollPane;
+
+    private CPPreviewPane previewPane;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logger.trace("initialize IdLabel version: " + VersionProperties.getInstance().getVersion());
@@ -54,6 +60,15 @@ public class HomeViewController implements Initializable {
             logger.trace("splitPane divider 0 changed: " + newValue);
             autoResize();
         });
+
+        contentScrollPane.getChildren().clear();
+
+        if (previewPane == null) {
+            previewPane = new CPPreviewPane();
+        }
+        contentScrollPane.getChildren().add(previewPane);
+
+        ocrTextArea.setWrapText(true);
 
 
         autoResize();
@@ -82,7 +97,7 @@ public class HomeViewController implements Initializable {
                     logger.trace("previewImageView valid");
                     try {
                         BufferedImage bufferedImage = ImageUtil.readBufferedImage(filePath);
-                        previewImageView.setImage(ImageUtil.convertToFxImage(bufferedImage));
+                        //previewImageView.setImage(ImageUtil.convertToFxImage(bufferedImage));
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -92,6 +107,14 @@ public class HomeViewController implements Initializable {
                 }
             }
         });
+
+        stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            // Do whatever you want
+            logger.trace("stage width changed: " + oldVal + " new value: " + newVal);
+            //autoResize();
+        });
+
+
     }
 
     private void autoResize() {
@@ -109,7 +132,7 @@ public class HomeViewController implements Initializable {
 
     public static void start() throws IOException {
         logger.info("start");
-
+        stage = new Stage();
         ResourceBundle resources = ResourceBundle.getBundle("bundles.languages", CommonUtil.getCurrentLanguageLocale());
         Parent root = FXMLLoader.load(Objects.requireNonNull(HomeViewController.class.getResource(FXML_FILE)));
         //URL url = HomeController.class.getResource(FXML_FILE);
@@ -117,7 +140,7 @@ public class HomeViewController implements Initializable {
         Scene scene = new Scene(root);
         String css = Objects.requireNonNull(HomeViewController.class.getResource(CSS_FILE)).toExternalForm();
         scene.getStylesheets().add(css);
-        stage = new Stage();
+
         stage.setTitle(resources.getString("title"));
         stage.setScene(scene);
         stage.centerOnScreen();

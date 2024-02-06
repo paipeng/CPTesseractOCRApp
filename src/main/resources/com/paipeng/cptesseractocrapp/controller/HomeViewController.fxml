@@ -29,7 +29,7 @@
     <center>
         <SplitPane fx:id="splitPane" dividerPositions="0.6088328075709779" orientation="HORIZONTAL">
             <items>
-                <Pane>
+                <Pane fx:id="contentScrollPane">
                     <ImageView fx:id="previewImageView"/>
                 </Pane>
                 <ScrollPane>
