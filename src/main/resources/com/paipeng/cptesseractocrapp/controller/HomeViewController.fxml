@@ -18,7 +18,9 @@
 >
     <top>
         <VBox>
+            <!--
             <Pane fx:id="idMenuPane" minHeight="30"/>
+            -->
             <CPToolPane fx:id="toolPane" prefHeight="40" maxHeight="40" minHeight="40"/>
         </VBox>
 
