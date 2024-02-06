@@ -17,7 +17,7 @@
                         style="-fx-background-image: url('images/icons/exit.png'); -fx-background-size: 100% 100%;"
                         >
                     <tooltip>
-                        <Tooltip text="%close_preview" />
+                        <Tooltip text="%exit" />
                     </tooltip>
                 </Button>
             </items>
