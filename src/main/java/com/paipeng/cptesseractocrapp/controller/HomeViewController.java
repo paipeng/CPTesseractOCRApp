@@ -63,8 +63,9 @@ public class HomeViewController implements Initializable {
             }
 
             @Override
-            public void decode(String filePath) {
-                String ocrText = TesseractUtil.decode(filePath, "chi_sim");
+            public void decode(String filePath, String language) {
+                logger.trace("decode: " + filePath + " language: " + language);
+                String ocrText = TesseractUtil.decode(filePath, language);
                 logger.trace("ocrText: " + ocrText);
                 ocrTextArea.setText(ocrText);
             }

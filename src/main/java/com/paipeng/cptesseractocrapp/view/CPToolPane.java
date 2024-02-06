@@ -51,7 +51,8 @@ public class CPToolPane extends VBox {
     private void init() {
         closeButton.setOnAction(event -> {
             logger.trace("close button");
-            cpToolPaneInterface.decode(inputFileTextField.getText());
+            String language = languageChoiceBox.getValue();
+            cpToolPaneInterface.decode(inputFileTextField.getText(), language.replace(".traineddata", ""));
         });
         previewZoomIn.setOnAction(event -> {
 
@@ -99,7 +100,7 @@ public class CPToolPane extends VBox {
 
         void close();
 
-        void decode(String filePath);
+        void decode(String filePath, String language);
 
         void selectFile(String filePath);
     }
