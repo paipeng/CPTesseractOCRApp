@@ -1,10 +1,13 @@
 plugins {
+  id 'java'
   id 'application'
   id 'org.openjfx.javafxplugin' version '0.0.13'
   id 'org.javamodularity.moduleplugin' version "1.8.12"
   id 'org.beryx.jlink' version '2.26.0'
 }
 
+
+apply plugin: 'java'
 
 group 'com.paipeng.cptesseractocrapp'
 version '1.0.0'
@@ -13,6 +16,11 @@ description = "The Application is for OCR decoding."
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass = mainClassName
+    mainModule = 'com.paipeng.cptesseractocrapp'
 }
 
 javafx {
@@ -136,11 +144,6 @@ task fatJar(type: Jar) {
     with jar
 }
 
-application {
-    mainClass = mainClassName
-    mainModule = 'com.paipeng.cptesseractocrapp'
-}
-
 run {
     //jvmArgs = ['-Djdk.gtk.version=2']
     jvmArgs = ['-Djdk.gtk.version=2',
@@ -172,8 +175,11 @@ jlink {
         forceMerge("slf4j")
     }
 
+    forceMerge('slf4j')
+
     // Pack it!
     jpackage {
+        jpackageHome = '/opt/jdk-17.0.2.jdk/Contents/Home'
         println 'jpackage'
         // Could be taken from command line, here it is defined statically
         // project.findProperty('installerOs')
@@ -255,6 +261,7 @@ jlink {
         }
         println imageOptions
         println installerOptions
+        println installerType
     }
 }
 
