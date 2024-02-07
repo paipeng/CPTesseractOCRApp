@@ -46,11 +46,17 @@ dependencies {
         exclude group: 'ch.qos.logback', module: 'logback-classic'
         exclude group: 'org.slf4j', module: 'slf4j-api'
     }
+
     // https://mvnrepository.com/artifact/net.java.dev.jna/jna
     implementation group: 'net.java.dev.jna', name: 'jna', version: '5.14.0'
     // https://mvnrepository.com/artifact/ch.qos.logback/logback-core
     implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.4.14'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.14'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.12'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.12'
+
 
     // https://mvnrepository.com/artifact/org.controlsfx/controlsfx
     implementation group: 'org.controlsfx', name: 'controlsfx', version: '11.2.0'
@@ -126,7 +132,8 @@ application {
 
 run {
     //jvmArgs = ['-Djdk.gtk.version=2']
-    jvmArgs = ['-Djdk.gtk.version=2', '--add-exports', 'javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED',
+    jvmArgs = ['-Djdk.gtk.version=2',
+               '--add-exports', 'javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED',
                '--add-exports', 'javafx.graphics/com.sun.javafx.font=ALL-UNNAMED']
 }
 
@@ -143,17 +150,28 @@ jlink {
         name = 'CP-OCR'
         noConsole = true
     }
+
+    mergedModule {
+        additive = true
+        //requires "ch.qos.logback.classic"
+        forceMerge("slf4j")
+    }
+
     // Pack it!
     jpackage {
+        println 'jpackage'
         // Could be taken from command line, here it is defined statically
         // project.findProperty('installerOs')
         //    (example: -PinstallerOs=mac)
         targetPlatformName = System.getProperty('os.name').toLowerCase().split()[0]
+        println 'targetPlatformName: ' + targetPlatformName
         // The app name
-        imageName = 'IdLabelPrinting'
-        jvmArgs = ['-Djdk.gtk.version=2', '--add-exports', 'javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED',
-                   '--add-exports', 'javafx.graphics/com.sun.javafx.font=ALL-UNNAMED',
-                   '--add-modules=javafx.controls,javafx.swing,javafx.media,javafx.graphics,javafx.fxml'
+        imageName = 'CP-OCR'
+        jvmArgs = ['-Djdk.gtk.version=2',
+                   //'--add-exports', 'javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED',
+                   //'--add-exports', 'javafx.graphics/com.sun.javafx.font=ALL-UNNAMED',
+                   //'--add-exports=ch.qos.logback.classic/ch.qos.logback.classic.model.processor=ch.qos.logback.core',
+                   //'--add-modules=javafx.controls,javafx.swing,javafx.media,javafx.graphics,javafx.fxml'
         ]
         // Resource directory for native package overrides,
         // you can do lots of magic here too...
@@ -178,9 +196,9 @@ jlink {
         }
         // Add jpackage-specific options
         installerOptions = [
-                '--name', 'IdLabelPrinting', // installer name
+                '--name', 'CP-OCR', // installer name
                 '--description', project.description,
-                '--copyright', 'Copyright 2023 PaiPeng',
+                '--copyright', 'Copyright 2024 PaiPeng',
                 '--vendor', 'PaiPeng'
         ]
         // We also could take the installer type from comand line
@@ -188,6 +206,7 @@ jlink {
         // We would pass this from the command line
         //    (example: -PinstallerType=msi)
         if (installerType == 'pkg') {
+            println 'pkg'
             imageOptions += ['--icon', 'src/main/resources/icon.icns']
             installerOptions += [
                     '--license-file', 'package/LICENSE-OS-Installer.txt'
@@ -211,7 +230,7 @@ jlink {
         }
         if (installerType == 'deb') {
             installerOptions += [
-                    '--linux-deb-maintainer', 'info@autumo.ch'
+                    '--linux-deb-maintainer', 'sipaipv6@gmail.com'
             ]
         }
         if (installerType == 'rpm') {
@@ -219,6 +238,8 @@ jlink {
                     '--linux-rpm-license-type', 'GPLv3'
             ]
         }
+        println imageOptions
+        println installerOptions
     }
 }
 

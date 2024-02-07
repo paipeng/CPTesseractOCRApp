@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TesseractUtil {
-    private static final String DATA_PATH = "src/main/resources/tessdata";
+    private static final String DATA_PATH = "/Users/paipeng/Development/Java/CPTesseractOCRApp/tessdata";
     public static Logger logger = LoggerFactory.getLogger(CPToolPane.class);
     public static String decode(String fileName, String language) {
         File imageFile = new File(fileName); //"eurotext.tif"
@@ -38,9 +38,14 @@ public class TesseractUtil {
     }
 
     public static List<String> getOCRLanguages() {
-        return Stream.of(Objects.requireNonNull(new File(DATA_PATH).listFiles()))
-                .filter(file -> !file.isDirectory() && !file.getPath().contains(".DS_Store"))
-                .map(File::getName)
-                .toList();
+        File[] files = new File(DATA_PATH).listFiles();
+        if (files != null && files.length > 0) {
+            return Stream.of(files)
+                    .filter(file -> !file.isDirectory() && !file.getPath().contains(".DS_Store"))
+                    .map(File::getName)
+                    .toList();
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

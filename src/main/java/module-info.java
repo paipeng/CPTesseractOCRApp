@@ -2,9 +2,11 @@ module com.paipeng.cptesseractocrapp {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.slf4j;
+    requires org.slf4j.simple;
     requires com.sun.jna;
     requires java.desktop;
     requires org.controlsfx.controls;
+    //requires ch.qos.logback.classic; //only runtime dependency
 
     exports com.paipeng.cptesseractocrapp;
     exports com.paipeng.cptesseractocrapp.controller;
