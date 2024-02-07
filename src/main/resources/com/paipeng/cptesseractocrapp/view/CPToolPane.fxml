@@ -45,7 +45,7 @@
 
             <items>
                 <Button fx:id="previewZoomIn" mnemonicParsing="false" prefWidth="30"
-                        style="-fx-background-image: url('images/icons/zoom_in.png'); -fx-background-size: 100% 100%;">
+                        style="-fx-background-image: url('/images/icons/zoom_in.png'); -fx-background-size: 100% 100%;">
                     <tooltip>
                         <Tooltip text="%tool_preview_zoom_in" />
                     </tooltip>
@@ -53,7 +53,7 @@
             </items>
             <items>
                 <Button fx:id="previewZoomOut" mnemonicParsing="false" prefWidth="30"
-                        style="-fx-background-image: url('images/icons/zoom_out.png'); -fx-background-size: 100% 100%;">
+                        style="-fx-background-image: url('/images/icons/zoom_out.png'); -fx-background-size: 100% 100%;">
                     <tooltip>
                         <Tooltip text="%tool_preview_zoom_out" />
                     </tooltip>
@@ -63,7 +63,7 @@
 
             <items>
                 <Button fx:id="ocrDecodeButton" mnemonicParsing="false" prefWidth="30"
-                        style="-fx-background-image: url('images/icons/ocr_decode.png'); -fx-background-size: 100% 100%;">
+                        style="-fx-background-image: url('/images/icons/ocr_decode.png'); -fx-background-size: 100% 100%;">
                     <tooltip>
                         <Tooltip text="%ocr_decode" />
                     </tooltip>
