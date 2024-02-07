@@ -12,7 +12,7 @@ module com.paipeng.cptesseractocrapp {
     exports com.paipeng.cptesseractocrapp.controller;
     exports com.paipeng.cptesseractocrapp.view;
     exports com.paipeng.cptesseractocrapp.view.ruler;
-    opens com.paipeng.cptesseractocrapp to javafx.fxml;
+    opens com.paipeng.cptesseractocrapp to javafx.fxml, javafx.graphics;
     opens com.paipeng.cptesseractocrapp.controller to javafx.fxml;
     opens com.paipeng.cptesseractocrapp.view to javafx.fxml;
     opens com.paipeng.cptesseractocrapp.view.ruler to javafx.fxml;
