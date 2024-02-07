@@ -38,6 +38,9 @@ tasks.withType(JavaCompile) {
 
 
 mainClassName = "com.paipeng.cptesseractocrapp.MainApp"
+
+mainModuleName = "com.paipeng.cptesseractocrapp"
+
 dependencies {
     // https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j
     implementation (group: 'net.sourceforge.tess4j', name: 'tess4j', version: '5.10.0') {
@@ -119,7 +122,7 @@ task fatJar(type: Jar) {
 
 application {
     mainClass = mainClassName
-    mainModule = 'CPTesseractOCRApp'
+    mainModule = mainModuleName
 }
 
 run {
