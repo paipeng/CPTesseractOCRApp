@@ -39,7 +39,6 @@ tasks.withType(JavaCompile) {
 
 mainClassName = "com.paipeng.cptesseractocrapp.MainApp"
 
-mainModuleName = "com.paipeng.cptesseractocrapp"
 
 dependencies {
     // https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j
@@ -122,7 +121,7 @@ task fatJar(type: Jar) {
 
 application {
     mainClass = mainClassName
-    mainModule = mainModuleName
+    mainModule = 'com.paipeng.cptesseractocrapp'
 }
 
 run {
